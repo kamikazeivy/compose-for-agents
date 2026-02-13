@@ -40,3 +40,9 @@ tasks:
       - lint:markdown
       - lint:yaml
     desc: Lint all files
+
+  setup:github:
+    desc: Set up GitHub authentication for demos
+    cmds:
+      - ./setup-github-auth.sh
+    dir: .
