@@ -44,5 +44,5 @@ tasks:
   setup:github:
     desc: Set up GitHub authentication for demos
     cmds:
-      - ./setup-github-auth.sh
+      - bash ./setup-github-auth.sh
     dir: .

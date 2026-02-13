@@ -2,6 +2,9 @@
 
 # setup-github-auth.sh
 # Helper script to streamline GitHub authentication for Compose for Agents demos
+#
+# Usage: ./setup-github-auth.sh
+# or: bash setup-github-auth.sh
 
 set -e
 
@@ -98,6 +101,10 @@ for dir in "${DIRS_WITH_MCP[@]}"; do
             echo "github.personal_access_token=$TOKEN" > "$MCP_FILE"
             echo -e "  ${GREEN}✅ Created $MCP_FILE with token${NC}"
         fi
+        
+        # Set restrictive permissions on the .mcp.env file
+        chmod 600 "$MCP_FILE"
+        echo -e "  ${BLUE}🔒 Set secure permissions (600) on $MCP_FILE${NC}"
     else
         echo -e "  ${YELLOW}⚠️  Directory $dir not found, skipping${NC}"
     fi
@@ -112,6 +119,11 @@ for dir in "${DIRS_WITH_MCP[@]}"; do
         echo "  - $dir/.mcp.env"
     fi
 done
+echo ""
+echo -e "${YELLOW}⚠️  Security Note:${NC}"
+echo "  - The .mcp.env files contain sensitive tokens and have been set to read/write for owner only (600)"
+echo "  - These files are already in .gitignore and should NOT be committed to version control"
+echo "  - Keep these files secure and do not share them"
 echo ""
 echo "You can now run the demos that require GitHub access:"
 echo "  cd agno && docker compose up --build"
