@@ -9,6 +9,7 @@
   [Docker Model Runner requirements] are met (specifically that GPU
   support is enabled) and the necessary drivers are installed.
 + If you're using Docker Engine on Linux, ensure you have [Docker Compose] 2.38.1 or later installed.
++ **[GitHub CLI]** (optional) - For simplified GitHub authentication in demos that use GitHub APIs.
 
 ## Demos
 
@@ -19,6 +20,28 @@ are all configured using two steps.
 2. create a `.mcp.env` file from the `mcp.env.example` file (if it exists, otherwise the demo
    doesn't need any secrets) and supply the required MCP tokens
 3. run `docker compose up --build`
+
+### Simplified GitHub Authentication
+
+For demos that require GitHub access (like the Agno demo), you can use the provided helper script
+to streamline authentication:
+
+```sh
+./setup-github-auth.sh
+```
+
+This script will:
+
++ Guide you through `gh auth login` if you're not already authenticated
++ Automatically retrieve your GitHub token
++ Configure the `.mcp.env` files in all demos that need GitHub access
+
+Alternatively, you can manually authenticate using the GitHub CLI:
+
+```sh
+gh auth login
+gh auth token  # Copy this token to your .mcp.env file
+```
 
 ### Using OpenAI models
 
@@ -70,3 +93,4 @@ made by Docker in this repository.
 [Docker Engine]: https://docs.docker.com/engine/
 [Docker Model Runner requirements]: https://docs.docker.com/ai/model-runner/
 [Docker Offload]: https://www.docker.com/products/docker-offload/
+[GitHub CLI]: https://cli.github.com/

@@ -23,6 +23,20 @@ a **Writer** agent that summarizes and categorizes them into a comprehensive mar
 
 ### Setup
 
+#### Option 1: Automated Setup (Recommended)
+
+Use the provided helper script from the repository root:
+
+```sh
+cd ..  # Navigate to repository root if in agno directory
+./setup-github-auth.sh
+cd agno  # Return to agno directory
+```
+
+This will authenticate you with GitHub and automatically configure the `.mcp.env` file.
+
+#### Option 2: Manual Setup
+
 1. **Create a GitHub Personal Access Token:**
    - Navigate to <https://github.com/settings/personal-access-tokens>
    - Create a fine-grained token with **read access to public repositories**
